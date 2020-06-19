@@ -1,1 +1,90 @@
-ghskllahlfcklds;s
+Mission: Safest Country
+
+Mission: Safest Country is a web based application where user i.e. the police station  can interact with various Police Stations and the Admin i.e. Higher Police Authority. With its help civilians can easily lodge instant complaints. Various Police Stations can interact with each other and can send required information to any other Police Station efficiently.
+This application allows online administration of crime and categories. This system uses an online interaction with the server database. This application finds its use in the real world when all the Police stations in a city are connected with each other through a central server, which is supposed to be the highest Police Authority of  the city. The interaction involves spontaneous messages informing the details of a crime to other stations so that the whole city police become a single unit.
+Moreover, a normal user can also report a crime to a particular station and track its progress using a unique report no. which would add to easy access of his request. Also, a criminal database, easily accessible to the Police Officials holds the details of all the criminals of the city.
+If a person has lodged a complaint to a particular police station and the complaint is not accepted by the police station at that moment, then the person will get a temporary tracking no. If the complaint gets accepted by the police station, the person will be notified about the FIR no. with the help of it, the person can track its progress. If no. action is taken on the complaint within 2 days, the FIR will be forwarded to the higher police authority, it means a message wiil be forwaded to the higher police authority about the unattended status of the FIR and It is mandatory for the police station or the higher authority to give a remark if the FIR is not acceptable.  
+SCOPE
+
+
+The scope of the project can be listed as follows:
+
+	To Register new police stations. 
+
+	Login for stations and admin.
+
+	To provide spontaneous crime reports.
+
+	To provide crime news to the users.
+
+	Updating the criminal lists.
+ 
+	Add to Emergency News.
+
+	Maintaining criminal record.
+	User Module
+	Login
+	Complaint Received
+	Report to Police Station
+	Add new Criminal
+	Edit Criminal Record
+	Delete Criminal Record
+	Delete Complaints
+	Update Complaint Status
+
+	Administrator Module
+	Login
+	Complaint Received
+	Report to Police Station
+	Add new Criminal
+	Edit Criminal Record
+	Delete Criminal Record
+	Delete Complaints
+
+
+
+	Database Tables
+
+Login_Master
+Field Name	Description
+Police ID	Varchar(50)PK
+Password	Varchar(50)
+
+FIR
+Field Name	Description
+UFN(Unique FIR Number)	int(8)  primary key
+Description	Varchar(50)
+PStation_Id	Varchar(10)
+Temporary Number	int(8) 
+Location of Incident	Varchar(50)
+Address	Varchar(50)
+Contact No.	Int(10)
+
+Criminal_Master
+Field Name	Description
+CriminalID	Varchar(10)  primary key
+Name	Varchar(30)
+Gender	Varchar(5)
+Height	Varchar(5)
+Weight	Varchar(5)
+PStation_Id	Varchar(10)
+Crimelevel	Varchar(20)
+Status	Varchar(30)
+Criminal_Picture	Varchar(100)
+
+emergency
+Field Name	Description
+Sno	int(3) 
+Descripton	Varchar(1000)
+
+Police_Station_Master
+Field Name	Description
+PStation_Id	Varchar(10)  primary key
+PStation_Name	Varchar(30)not null
+Address	Varchar(50)not null
+Phone	Numeric
+Mobile	Numeric
+PStation_Head	Varchar(20)not null
+Password	Varchar(10)not null
+
+
