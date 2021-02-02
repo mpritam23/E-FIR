@@ -8,6 +8,14 @@ CREATE TABLE `address` (
   `pincode` int NOT NULL,
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `citizen_register` (
+  `citizen_id` varchar(5) NOT NULL,
+  `citizen_name` varchar(45) DEFAULT NULL,
+  `citizen_email` varchar(45) DEFAULT NULL,
+  `citizen_contactNo` varchar(45) DEFAULT NULL,
+  `citizen_password` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`citizen_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 CREATE TABLE `criminal` (
   `criminal_id` varchar(8) NOT NULL,
   `criminal_name` varchar(75) NOT NULL,
@@ -37,15 +45,18 @@ CREATE TABLE `fir` (
   `action_taken` varchar(254) NOT NULL,
   `section_of_ipc` varchar(254) NOT NULL,
   `fir_flag` int NOT NULL,
+  `accused` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`fir_id`),
   KEY `ps_id_fk_idx` (`ps_id`),
   KEY `offence_id_fk_idx` (`offence_id`),
   KEY `assigned_to_fk_idx` (`assigned_to`),
   KEY `complaintfiled_id_fk_idx` (`complaint_id`),
   KEY `complainetfiled_date_fk_idx` (`complaint_date`),
+  KEY `accused_fk_idx` (`accused`),
   CONSTRAINT `assigned_to_fk` FOREIGN KEY (`assigned_to`) REFERENCES `police` (`police_id`),
   CONSTRAINT `complainetfiled_date_fk` FOREIGN KEY (`complaint_date`) REFERENCES `police_station` (`complaint_date`),
   CONSTRAINT `complaintfiled_id_fk` FOREIGN KEY (`complaint_id`) REFERENCES `police_station` (`complaint_id`),
+  CONSTRAINT `criminalid_fk` FOREIGN KEY (`accused`) REFERENCES `criminal` (`criminal_id`),
   CONSTRAINT `offence_id_fk` FOREIGN KEY (`offence_id`) REFERENCES `offence` (`offence_id`),
   CONSTRAINT `psid_fk` FOREIGN KEY (`ps_id`) REFERENCES `police_station` (`ps_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -150,5 +161,6 @@ CREATE TABLE `register` (
   `role` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_idx` (`role`),
+  CONSTRAINT `citizen_id_fk` FOREIGN KEY (`id`) REFERENCES `citizen_register` (`citizen_id`),
   CONSTRAINT `id_fk` FOREIGN KEY (`id`) REFERENCES `police_station` (`ps_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
